@@ -1,0 +1,64 @@
+extends main
+include mixins
+
+mixin sortGridHeaderColumnNames()
+    th(ng-repeat='fd in fieldDescriptions', ng-class='headerClass(fd)')&attributes(attributes)
+      a&attributes(attributes) {{messages(fd.name)}}&nbsp;
+      span(nc-sort-by ng-hide='isNotSortable(fd.field)' ng-class='getSortClass(fd.field)' style='color: #b3b3cc')
+
+mixin gridTemplate()
+    table.table&attributes(attributes)
+        thead: tr
+            +gridHeaderActionCell()
+            +sortGridHeaderColumnNames()
+        tbody
+            +gridItemRow()
+                +gridBodyActionCell()
+                +gridBodyFields()
+            +gridBodyCreateNewRow()
+        +gridFooterTemplate()
+            tr.active
+                td
+                +gridFooterTotalRow()
+
+mixin createActions()
+    +createActionsContainer()&attributes(attributes): +toolbarContainer()
+        +returnToGridButton()
+        +createEntityButton()
+        +scrapingContainer()
+            +scrapingInput()
+            +scrapeFromUrlButton()
+        block
+
+mixin scrapingInput()
+    input.form-control(type='text', ng-model='scrapingUrl', ng-trim='true', placeholder=messages("Page Jaune Url"), style="width:250px; margin-right: 5px")&attributes(attributes)
+
+mixin scrapeFromUrlButton()
+    button.btn.btn-default.ng-cloak(ng-click='scrapeFromPageJaune()', lc-tooltip="Import from Url")&attributes(attributes)
+        i.glyphicon.glyphicon-download
+
+mixin scrapingContainer()
+    .pull-right.form-inline
+        block
+
+block vars
+    - var hasToolbar = true
+block content
+    div(ng-app='allcount', ng-controller='EntityViewScrapingController')
+        +defaultToolbar()
+        .container.screen-container(ng-cloak)
+            +defaultGrid()
+            +noEntries()
+            +defaultEditAndCreateForms()
+
+style.
+    .hidden-xs { display: unset !important; }
+
+block js
+    +entityJs()
+    script(src='/assets/js/neris-crm.js')
+    script(src='/assets/js/neris-crm-config.js')
+
+
+style.hidden-xs
+    

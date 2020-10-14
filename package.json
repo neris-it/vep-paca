@@ -1,0 +1,20 @@
+{
+  "name": "neris-crm",
+  "version": "0.1.6",
+  "author": {
+    "name": "Neris IT",
+    "email": "contact@neris-it.com"
+  },
+  "description": "CRM System for small businesses",
+  "dependencies": {
+    "allcountjs" : "git+https://gitlab.com/oopets/allcountjs.git#f96da44bd2ee7633c125a99749956c9e4289d655"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "allcountjsTemplate": "twenty-two-lines",
+  "engines": {
+    "node": "8.17.0",
+    "npm": "3.8.0"
+  }
+}

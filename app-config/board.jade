@@ -1,0 +1,10 @@
+extends project/card-board
+block panelBody
+  .panel-body
+    h4 {{item.date | date}}
+    p {{item.company.name}}
+    p {{item.description}}
+    p {{item.assignee.name}}
+
+style.
+    .hidden-xs { display: unset !important; }
