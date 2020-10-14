@@ -1,0 +1,23 @@
+extends generic/top-entity-editor
+include mixins
+
+block vars
+    - var hasToolbar = true
+block formAndHeader
+    .toolbar-header
+        .container
+            .pull-left: .btn-toolbar
+                span.entity-title Votre profil
+    .container.screen-container(ng-cloak)
+        +defaultEditAndCreateForms()
+        .row.text-right.btn-toolbar
+            button.btn.btn-primary.btn-lg.ng-cloak(ng-click='startEditing()', lc-message="Modifier", ng-hide='viewState.isFormEditing')
+            button.btn.btn-success.btn-lg.ng-cloak(ng-click='doneEditing()', lc-message="Sauvegarder", ng-show='viewState.isFormEditing')
+            +actions('single-item').btn-lg
+
+style.
+    .hidden-xs { display: unset !important; }
+
+block js
+    script(src='/assets/js/views/entity.js')
+    script(src='/assets/js/views/generic/top-entity-editor.js')
