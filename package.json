@@ -14,7 +14,7 @@
   },
   "allcountjsTemplate": "twenty-two-lines",
   "engines": {
-    "node": "8.17.0",
+    "node": "6.11.1",
     "npm": "3.8.0"
   }
 }
